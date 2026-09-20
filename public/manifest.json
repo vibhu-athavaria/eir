@@ -1,0 +1,12 @@
+{
+  "name": "Eir — Wellness and Recovery",
+  "short_name": "Eir",
+  "description": "Eir is a private wellness app for journaling, breathing, and getting through hard moments. Crisis contacts, grounding activities, and a mood calendar — all in one place.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0f",
+  "theme_color": "#8b5cf6",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}
