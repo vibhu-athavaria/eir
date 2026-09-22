@@ -50,10 +50,15 @@ ios/, android/  # Capacitor native projects — see INSTRUCTIONS.md
 
 ## Getting started (local development)
 
-1. Install dependencies: `npm install`
-2. Create a Supabase project at https://supabase.com (sign in → "New project").
-3. Copy `.env.example` to `.env` and fill in your Supabase project's URL and keys (Project Settings → API, and → Database for the connection string, `SUPABASE_DB_URL`).
-4. Run the migrations against it, **in order** — `0002` depends on the table `0001` creates. Three equivalent options:
+1. Clone the repo and move into it:
+   ```bash
+   git clone https://github.com/vibhu-athavaria/eir.git
+   cd eir
+   ```
+2. Install dependencies: `npm install`
+3. Create a Supabase project at https://supabase.com (sign in → "New project").
+4. Copy `.env.example` to `.env` and fill in your Supabase project's URL and keys (Project Settings → API, and → Database for the connection string, `SUPABASE_DB_URL`).
+5. Run the migrations against it, **in order** — `0002` depends on the table `0001` creates. Three equivalent options:
    - **Supabase CLI** (`brew install supabase/tap/supabase`), the most idiomatic path for ongoing development — this is what `supabase migration new`/`supabase db push` expect going forward:
      ```bash
      supabase login
@@ -76,7 +81,8 @@ ios/, android/  # Capacitor native projects — see INSTRUCTIONS.md
    Whichever you use, if your project's **direct** connection string fails to resolve (some networks lack IPv6, which the direct host requires), use the **Session pooler** connection string instead (Project Settings → Database → Connection string) as `SUPABASE_DB_URL`.
 
    If you ever apply a migration via `psql`/the dashboard on a project you've also linked with the CLI, the CLI won't know it was applied — `supabase migration list` will show it missing from the "Remote" column, and a later `supabase db push` will try to re-run it and fail on "already exists". Fix with `supabase migration repair --status applied <version> --db-url "$SUPABASE_DB_URL"`, which just corrects the CLI's bookkeeping without touching your schema.
-5. Run the app: `npm run dev`
+6. Run the app in dev mode: `npm run dev` (Vite prints a local URL, typically http://localhost:5173).
+7. When you're ready to build for production: `npm run build` (outputs to `dist/`). Preview that build locally with `npm run preview` before deploying — see [Deployment (web)](#deployment-web) below.
 
 ## Commands
 
